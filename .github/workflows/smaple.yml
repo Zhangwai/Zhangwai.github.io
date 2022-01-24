@@ -1,0 +1,20 @@
+name: smaple commands
+
+on:
+  push:
+    branches:    
+      - dev
+
+
+jobs: 
+  check-tools-version:
+    name: 检查工具版本信息
+    runs-on: ubuntu-latest
+    steps:
+      - name: 打印一下
+        run: echo 'hello world'
+      - name: check scripts
+        run: |
+          node -v
+          npm -v
+          echo 'check success'
