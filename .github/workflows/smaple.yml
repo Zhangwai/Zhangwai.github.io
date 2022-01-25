@@ -1,38 +1,47 @@
-name: smaple commands
+# name: smaple commands
 
-on:
-  push:
-    branches:
-      - dev
+# # 触发条件：在 push 到 main 分支后
+# on:
+#   push:
+#     branches:
+#       - dev
 
-jobs:
-  check-tools-version:
-    name: 检查工具版本信息
-    runs-on: ubuntu-latest
-    steps:
-      - name: 打印一下
-        run: echo 'hello world'
+# jobs:
+#   check-tools-version:
+#     name: 检查工具版本信息
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: 打印一下
+#         run: echo 'hello world'
 
-      - name: check scripts
-        run: |
-          node -v
-          npm -v
-          echo 'check success'
+#       - name: check scripts
+#         run: |
+#           node -v
+#           npm -v
+#           echo 'check success'
 
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-        persist-credentials: false
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
+#   build-and-deploy:
+#     # 服务器环境：最新版 Ubuntu
+#     runs-on: ubuntu-latest
+#     steps:
+#       # 拉取代码
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#         with:
+#         persist-credentials: false
+#       # 生成静态文件
+#       - name: Install and Build
+#         run: |
+#           npm install
+#           npm run build
+#         # 部署到 GitHub Pages
+#       - name: Deploy
+#         # 使用别人写好的一个 action
+#         uses: JamesIves/github-pages-deploy-action@releases/v3
+#         with:
+#           # 这里的 ACCESS_TOKEN 名字需要和下文中的相对应
+#           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+#           # 打包后的文件部署到哪个分支上
+#           BRANCH: gh-pages
+#           # 打包后的文件在哪里
+#           FOLDER: build
